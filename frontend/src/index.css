@@ -1,0 +1,563 @@
+@import "tailwindcss";
+
+/* ============================================================
+   THEME SYSTEM
+   Two themes: DAY (light), NIGHT (dark intelligence)
+   Controlled via data-theme attribute on <html>
+   Default theme is NIGHT
+   ============================================================ */
+
+/* NIGHT THEME - Default Dark Intelligence Console */
+:root,
+[data-theme="night"] {
+  --bg-primary: #030712;
+  --bg-secondary: #0a0f1e;
+  --bg-tertiary: #111827;
+  --bg-card: #0f172a;
+  --bg-elevated: #1e293b;
+  --bg-input: #111827;
+  --bg-hover: rgba(99, 102, 241, 0.04);
+  --bg-active: rgba(99, 102, 241, 0.08);
+
+  --border-subtle: rgba(99, 102, 241, 0.06);
+  --border-default: rgba(99, 102, 241, 0.12);
+  --border-active: rgba(99, 102, 241, 0.4);
+  --border-strong: rgba(99, 102, 241, 0.6);
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  --text-disabled: #475569;
+  --text-inverse: #030712;
+
+  --accent-cyan: #22d3ee;
+  --accent-blue: #6366f1;
+  --accent-violet: #a78bfa;
+  --accent-amber: #fbbf24;
+  --accent-red: #f87171;
+  --accent-green: #34d399;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.7);
+
+  --glass-bg: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(10, 15, 30, 0.92));
+  --glass-bg-elevated: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+
+  --skeleton-base: rgba(30, 41, 59, 0.4);
+  --skeleton-shine: rgba(30, 41, 59, 0.7);
+
+  --grid-color: rgba(99, 102, 241, 0.02);
+  --atmosphere-1: rgba(99, 102, 241, 0.03);
+  --atmosphere-2: rgba(34, 211, 238, 0.02);
+
+  --home-atmosphere-primary: rgba(99, 102, 241, 0.03);
+  --home-atmosphere-secondary: rgba(34, 211, 238, 0.02);
+  --home-grid-color: rgba(99, 102, 241, 0.02);
+
+  --graph-node-text: #f1f5f9;
+  --graph-node-meta: #cbd5e1;
+  --graph-label-bg: rgba(15, 23, 42, 0.85);
+  --graph-label-border: rgba(99, 102, 241, 0.2);
+  --graph-label-text: #f1f5f9;
+  --graph-label-meta: #22d3ee;
+  --graph-glow-opacity: 0.15;
+  --graph-connection-opacity: 0.6;
+}
+
+/* DAY THEME - Soft Light Intelligence Console */
+[data-theme="day"] {
+  --bg-primary: #F4F7FA;
+  --bg-secondary: #EEF3F7;
+  --bg-tertiary: #F8FAFC;
+  --bg-card: #F8FAFC;
+  --bg-elevated: #FFFFFF;
+  --bg-input: #F4F7FA;
+  --bg-hover: rgba(59, 130, 246, 0.06);
+  --bg-active: rgba(59, 130, 246, 0.1);
+
+  --border-subtle: #DCE5EE;
+  --border-default: #CBD8E5;
+  --border-active: rgba(8, 145, 178, 0.5);
+  --border-strong: rgba(8, 145, 178, 0.7);
+
+  --text-primary: #172033;
+  --text-secondary: #526176;
+  --text-muted: #718096;
+  --text-disabled: #94A3B8;
+  --text-inverse: #ffffff;
+
+  --accent-cyan: #0891B2;
+  --accent-blue: #2563EB;
+  --accent-violet: #7C3AED;
+  --accent-amber: #D97706;
+  --accent-red: #DC2626;
+  --accent-green: #059669;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  --glass-bg: linear-gradient(135deg, rgba(248, 250, 252, 0.9), rgba(244, 247, 250, 0.95));
+  --glass-bg-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.98));
+
+  --skeleton-base: rgba(226, 232, 240, 0.5);
+  --skeleton-shine: rgba(226, 232, 240, 0.8);
+
+  --grid-color: rgba(203, 216, 229, 0.4);
+  --atmosphere-1: rgba(59, 130, 246, 0.04);
+  --atmosphere-2: rgba(124, 58, 237, 0.03);
+
+  --home-atmosphere-primary: rgba(59, 130, 246, 0.05);
+  --home-atmosphere-secondary: rgba(124, 58, 237, 0.03);
+  --home-grid-color: rgba(203, 216, 229, 0.4);
+
+  --graph-node-text: #172033;
+  --graph-node-meta: #526176;
+  --graph-label-bg: rgba(255, 255, 255, 0.85);
+  --graph-label-border: #CBD8E5;
+  --graph-label-text: #172033;
+  --graph-label-meta: #0891B2;
+  --graph-glow-opacity: 0.08;
+  --graph-connection-opacity: 0.5;
+}
+
+/* ============================================================
+   TAILWIND THEME MAPPING
+   ============================================================ */
+
+@theme {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-active: var(--border-active);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-violet: var(--accent-violet);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-red: var(--accent-red);
+  --color-accent-green: var(--accent-green);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-default) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--border-default);
+  border-radius: 3px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* ============================================================
+   GLASS PANEL EFFECTS
+   ============================================================ */
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-subtle);
+  backdrop-filter: blur(12px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-panel-elevated {
+  background: var(--glass-bg-elevated);
+  border: 1px solid var(--border-default);
+  backdrop-filter: blur(16px);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ============================================================
+   GLOW EFFECTS
+   ============================================================ */
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.1), 0 0 40px rgba(56, 189, 248, 0.05);
+}
+
+.glow-cyan-strong {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2), 0 0 60px rgba(56, 189, 248, 0.1);
+}
+
+/* ============================================================
+   BACKGROUND PATTERNS
+   ============================================================ */
+
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.bg-atmosphere {
+  background:
+    radial-gradient(ellipse at 20% 20%, var(--atmosphere-1) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, var(--atmosphere-2) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in-up 0.3s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+/* ============================================================
+   STATUS INDICATORS
+   ============================================================ */
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.status-dot::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.status-online {
+  background: var(--accent-green);
+}
+
+.status-online::after {
+  background: rgba(16, 185, 129, 0.3);
+}
+
+.status-warning {
+  background: var(--accent-amber);
+}
+
+.status-warning::after {
+  background: rgba(245, 158, 11, 0.3);
+}
+
+.status-error {
+  background: var(--accent-red);
+}
+
+.status-error::after {
+  background: rgba(239, 68, 68, 0.3);
+}
+
+/* ============================================================
+   TABLE STYLES
+   ============================================================ */
+
+.intel-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.intel-table th {
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.intel-table td {
+  padding: 12px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: middle;
+}
+
+.intel-table tr:hover td {
+  background: var(--bg-hover);
+}
+
+.intel-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ============================================================
+   SKELETON LOADING
+   ============================================================ */
+
+.skeleton {
+  background: linear-gradient(90deg, var(--skeleton-base) 25%, var(--skeleton-shine) 50%, var(--skeleton-base) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================================
+   SCORE RING
+   ============================================================ */
+
+.score-ring {
+  transform: rotate(-90deg);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-pulse-subtle,
+  .animate-slide-in,
+  .animate-fade-in,
+  .skeleton {
+    animation: none;
+  }
+
+  body {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   FLOW ANIMATION
+   ============================================================ */
+
+@keyframes flow-down {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+}
+
+.flow-arrow {
+  animation: flow-down 1.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   GRAPH NODE HOVER
+   ============================================================ */
+
+.graph-node:hover {
+  filter: brightness(1.3);
+  cursor: pointer;
+}
+
+/* ============================================================
+   TABULAR NUMERALS
+   ============================================================ */
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   MODAL OVERLAY
+   ============================================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fade-in 0.2s ease-out;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slide-in-up 0.3s ease-out;
+}
+
+/* ============================================================
+   DROPDOWN
+   ============================================================ */
+
+.dropdown-menu {
+  position: absolute;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  z-index: 40;
+  min-width: 200px;
+  animation: fade-in 0.15s ease-out;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.dropdown-item:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.dropdown-item:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+/* ============================================================
+   THEME SELECTOR
+   ============================================================ */
+
+.theme-selector {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+
+.theme-option {
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-option:hover {
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+}
+
+.theme-option.active {
+  color: var(--accent-cyan);
+  background: var(--bg-active);
+  border-color: var(--border-active);
+}

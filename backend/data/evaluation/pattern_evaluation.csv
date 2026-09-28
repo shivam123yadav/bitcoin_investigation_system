@@ -1,0 +1,25 @@
+pattern_id,kind,pattern_type,confidence,wallet_count,labeled_families,expected_groups
+PAT-MIX-0001,mixing,repeated-fanout,high,27,"['E', 'G', 'H']","['E-03', 'G-09', 'G-10', 'H-06']"
+PAT-MIX-0002,mixing,repeated-fanout,high,21,"['E', 'G']","['E-05', 'G-01']"
+PAT-MIX-0003,mixing,repeated-fanout,high,19,"['E', 'G', 'H']","['E-08', 'G-09', 'H-03']"
+PAT-MIX-0004,mixing,repeated-fanout,high,21,"['E', 'F', 'H']","['E-02', 'F-10', 'H-02']"
+PAT-MIX-0005,mixing,repeated-fanout,high,20,"['E', 'F', 'G', 'H']","['E-07', 'F-10', 'G-04', 'H-01', 'H-03']"
+PAT-MIX-0006,mixing,repeated-fanout,high,18,"['E', 'G']","['E-04', 'G-08', 'G-10']"
+PAT-MIX-0007,mixing,repeated-fanout,high,19,"['E', 'F', 'G']","['E-01', 'E-08', 'F-03', 'F-19', 'G-09']"
+PAT-MIX-0008,mixing,mixing-like,medium,8,['H'],['H-06']
+PAT-MIX-0009,mixing,mixing-like,medium,8,['H'],['H-04']
+PAT-MIX-0010,mixing,mixing-like,medium,8,['H'],['H-01']
+PAT-MIX-0011,mixing,mixing-like,medium,7,['H'],['H-06']
+PAT-MIX-0012,mixing,mixing-like,medium,7,['H'],['H-02']
+PAT-MIX-0013,mixing,mixing-like,medium,8,['H'],['H-04']
+PAT-MIX-0014,mixing,mixing-like,medium,8,['H'],['H-04']
+PAT-MIX-0015,mixing,mixing-like,medium,8,['H'],['H-04']
+PAT-MIX-0016,mixing,mixing-like,medium,8,['H'],['H-04']
+PAT-MIX-0017,mixing,mixing-like,medium,8,['H'],"['H-04', 'H-05']"
+PAT-MIX-0018,mixing,mixing-like,medium,8,['H'],"['H-02', 'H-06']"
+PAT-MIX-0019,mixing,mixing-like,medium,7,['H'],['H-04']
+PAT-MIX-0020,mixing,mixing-like,medium,8,['H'],['H-06']
+PAT-MIX-0021,mixing,mixing-like,medium,7,['H'],"['H-03', 'H-06']"
+PAT-MIX-0022,mixing,mixing-like,medium,8,['H'],['H-01']
+PAT-MIX-0023,mixing,mixing-like,medium,8,['H'],['H-04']
+PAT-MIX-0024,mixing,mixing-like,medium,8,['H'],['H-04']

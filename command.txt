@@ -1,0 +1,20 @@
+linux env 
+source .venv-linux313/bin/activate
+
+create linux env
+python -m venv .venv-linux313
+
+backend command
+
+wsl -d Ubuntu
+cd /mnt/d/A_last_hope/SIH_Prototype
+source .venv-linux313/bin/activate
+cd backend
+uvicorn app.main:app --host 127.0.0.1 --port 8000
+
+
+frontend command
+
+wsl -d Ubuntu
+cd /mnt/d/A_last_hope/SIH_Prototype/frontend
+npm run dev -- --host 127.0.0.1

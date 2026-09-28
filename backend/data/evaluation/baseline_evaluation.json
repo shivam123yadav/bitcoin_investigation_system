@@ -1,0 +1,464 @@
+{
+  "evaluation": {
+    "status": "PASS",
+    "evaluator": "evaluate_detection.py",
+    "ground_truth_used_only_after_inference": true,
+    "api_base": "http://127.0.0.1:8000",
+    "dataset_root": "D:\\A_last_hope\\SIH_Prototype\\datasets"
+  },
+  "analysis_run": {
+    "status": {
+      "status": "completed",
+      "run_id": "run-1.0.0-1790535403",
+      "progress": 100,
+      "stages": [
+        {
+          "id": 1,
+          "name": "Ingestion & validation",
+          "status": "completed",
+          "description": "Ingestion & validation",
+          "progress": 100,
+          "detail": "Loaded 48,000 observations"
+        },
+        {
+          "id": 2,
+          "name": "Feature engineering",
+          "status": "completed",
+          "description": "Feature engineering",
+          "progress": 100,
+          "detail": "Engineered 10,713 wallet and 3,800 IP feature rows"
+        },
+        {
+          "id": 3,
+          "name": "Anomaly detection",
+          "status": "completed",
+          "description": "Anomaly detection",
+          "progress": 100,
+          "detail": "Scored 14,513 entities"
+        },
+        {
+          "id": 4,
+          "name": "Entity clustering",
+          "status": "completed",
+          "description": "Entity clustering",
+          "progress": 100,
+          "detail": "Generated 8 behavioral clusters"
+        },
+        {
+          "id": 5,
+          "name": "Pattern detection",
+          "status": "completed",
+          "description": "Pattern detection",
+          "progress": 100,
+          "detail": "Detected 24 candidate patterns"
+        },
+        {
+          "id": 6,
+          "name": "Priority & lead generation",
+          "status": "completed",
+          "description": "Priority & lead generation",
+          "progress": 100,
+          "detail": "Generated 150 investigation leads"
+        }
+      ]
+    },
+    "result": {
+      "recordsProcessed": 48000,
+      "entitiesAnalyzed": 14513,
+      "transactionsAnalyzed": 46977,
+      "durationMs": 34134.59,
+      "leadsGenerated": 150,
+      "clusterCount": 8,
+      "patternCount": 24,
+      "anomalyCount": 174,
+      "completedAt": "2026-09-27T18:56:43.738368+00:00",
+      "stages": [
+        {
+          "id": 1,
+          "name": "Ingestion & validation",
+          "status": "completed",
+          "description": "Ingestion & validation",
+          "progress": 100,
+          "detail": "Loaded 48,000 observations"
+        },
+        {
+          "id": 2,
+          "name": "Feature engineering",
+          "status": "completed",
+          "description": "Feature engineering",
+          "progress": 100,
+          "detail": "Engineered 10,713 wallet and 3,800 IP feature rows"
+        },
+        {
+          "id": 3,
+          "name": "Anomaly detection",
+          "status": "completed",
+          "description": "Anomaly detection",
+          "progress": 100,
+          "detail": "Scored 14,513 entities"
+        },
+        {
+          "id": 4,
+          "name": "Entity clustering",
+          "status": "completed",
+          "description": "Entity clustering",
+          "progress": 100,
+          "detail": "Generated 8 behavioral clusters"
+        },
+        {
+          "id": 5,
+          "name": "Pattern detection",
+          "status": "completed",
+          "description": "Pattern detection",
+          "progress": 100,
+          "detail": "Detected 24 candidate patterns"
+        },
+        {
+          "id": 6,
+          "name": "Priority & lead generation",
+          "status": "completed",
+          "description": "Priority & lead generation",
+          "progress": 100,
+          "detail": "Generated 150 investigation leads"
+        }
+      ]
+    }
+  },
+  "ground_truth": {
+    "entity_rows": 15822,
+    "scenario_entities": 2877,
+    "scenario_core_entities": 2442,
+    "background_entities": 9123,
+    "scenario_instance_counts": {
+      "B": 14,
+      "C": 12,
+      "D": 15,
+      "E": 8,
+      "F": 20,
+      "G": 10,
+      "H": 6
+    }
+  },
+  "lead_metrics": [
+    {
+      "k": 10,
+      "leads_available": 150,
+      "scenario_associated_count": 10,
+      "scenario_associated_rate_pct": 100.0,
+      "core_count": 10,
+      "core_rate_pct": 100.0,
+      "background_count": 0,
+      "background_rate_pct": 0.0,
+      "unknown_count": 0,
+      "unknown_rate_pct": 0.0,
+      "scenario_family_count": 2,
+      "scenario_families": [
+        "E",
+        "H"
+      ],
+      "average_precision": 1.0,
+      "ndcg": 1.0,
+      "instance_coverage": {
+        "B": {
+          "detected_instances": 0,
+          "total_instances": 14,
+          "coverage_pct": 0.0
+        },
+        "C": {
+          "detected_instances": 0,
+          "total_instances": 12,
+          "coverage_pct": 0.0
+        },
+        "D": {
+          "detected_instances": 0,
+          "total_instances": 15,
+          "coverage_pct": 0.0
+        },
+        "E": {
+          "detected_instances": 2,
+          "total_instances": 8,
+          "coverage_pct": 25.0
+        },
+        "F": {
+          "detected_instances": 0,
+          "total_instances": 20,
+          "coverage_pct": 0.0
+        },
+        "G": {
+          "detected_instances": 0,
+          "total_instances": 10,
+          "coverage_pct": 0.0
+        },
+        "H": {
+          "detected_instances": 2,
+          "total_instances": 6,
+          "coverage_pct": 33.33
+        }
+      }
+    },
+    {
+      "k": 25,
+      "leads_available": 150,
+      "scenario_associated_count": 19,
+      "scenario_associated_rate_pct": 76.0,
+      "core_count": 19,
+      "core_rate_pct": 76.0,
+      "background_count": 6,
+      "background_rate_pct": 24.0,
+      "unknown_count": 0,
+      "unknown_rate_pct": 0.0,
+      "scenario_family_count": 2,
+      "scenario_families": [
+        "E",
+        "H"
+      ],
+      "average_precision": 0.9798,
+      "ndcg": 0.9956,
+      "instance_coverage": {
+        "B": {
+          "detected_instances": 0,
+          "total_instances": 14,
+          "coverage_pct": 0.0
+        },
+        "C": {
+          "detected_instances": 0,
+          "total_instances": 12,
+          "coverage_pct": 0.0
+        },
+        "D": {
+          "detected_instances": 0,
+          "total_instances": 15,
+          "coverage_pct": 0.0
+        },
+        "E": {
+          "detected_instances": 5,
+          "total_instances": 8,
+          "coverage_pct": 62.5
+        },
+        "F": {
+          "detected_instances": 0,
+          "total_instances": 20,
+          "coverage_pct": 0.0
+        },
+        "G": {
+          "detected_instances": 0,
+          "total_instances": 10,
+          "coverage_pct": 0.0
+        },
+        "H": {
+          "detected_instances": 2,
+          "total_instances": 6,
+          "coverage_pct": 33.33
+        }
+      }
+    },
+    {
+      "k": 50,
+      "leads_available": 150,
+      "scenario_associated_count": 25,
+      "scenario_associated_rate_pct": 50.0,
+      "core_count": 25,
+      "core_rate_pct": 50.0,
+      "background_count": 25,
+      "background_rate_pct": 50.0,
+      "unknown_count": 0,
+      "unknown_rate_pct": 0.0,
+      "scenario_family_count": 2,
+      "scenario_families": [
+        "E",
+        "H"
+      ],
+      "average_precision": 0.9136,
+      "ndcg": 0.9806,
+      "instance_coverage": {
+        "B": {
+          "detected_instances": 0,
+          "total_instances": 14,
+          "coverage_pct": 0.0
+        },
+        "C": {
+          "detected_instances": 0,
+          "total_instances": 12,
+          "coverage_pct": 0.0
+        },
+        "D": {
+          "detected_instances": 0,
+          "total_instances": 15,
+          "coverage_pct": 0.0
+        },
+        "E": {
+          "detected_instances": 6,
+          "total_instances": 8,
+          "coverage_pct": 75.0
+        },
+        "F": {
+          "detected_instances": 0,
+          "total_instances": 20,
+          "coverage_pct": 0.0
+        },
+        "G": {
+          "detected_instances": 0,
+          "total_instances": 10,
+          "coverage_pct": 0.0
+        },
+        "H": {
+          "detected_instances": 3,
+          "total_instances": 6,
+          "coverage_pct": 50.0
+        }
+      }
+    },
+    {
+      "k": 100,
+      "leads_available": 150,
+      "scenario_associated_count": 59,
+      "scenario_associated_rate_pct": 59.0,
+      "core_count": 59,
+      "core_rate_pct": 59.0,
+      "background_count": 41,
+      "background_rate_pct": 41.0,
+      "unknown_count": 0,
+      "unknown_rate_pct": 0.0,
+      "scenario_family_count": 4,
+      "scenario_families": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "average_precision": 0.6878,
+      "ndcg": 0.9243,
+      "instance_coverage": {
+        "B": {
+          "detected_instances": 0,
+          "total_instances": 14,
+          "coverage_pct": 0.0
+        },
+        "C": {
+          "detected_instances": 0,
+          "total_instances": 12,
+          "coverage_pct": 0.0
+        },
+        "D": {
+          "detected_instances": 0,
+          "total_instances": 15,
+          "coverage_pct": 0.0
+        },
+        "E": {
+          "detected_instances": 6,
+          "total_instances": 8,
+          "coverage_pct": 75.0
+        },
+        "F": {
+          "detected_instances": 2,
+          "total_instances": 20,
+          "coverage_pct": 10.0
+        },
+        "G": {
+          "detected_instances": 6,
+          "total_instances": 10,
+          "coverage_pct": 60.0
+        },
+        "H": {
+          "detected_instances": 4,
+          "total_instances": 6,
+          "coverage_pct": 66.67
+        }
+      }
+    },
+    {
+      "k": 150,
+      "leads_available": 150,
+      "scenario_associated_count": 108,
+      "scenario_associated_rate_pct": 72.0,
+      "core_count": 108,
+      "core_rate_pct": 72.0,
+      "background_count": 42,
+      "background_rate_pct": 28.0,
+      "unknown_count": 0,
+      "unknown_rate_pct": 0.0,
+      "scenario_family_count": 5,
+      "scenario_families": [
+        "B",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "average_precision": 0.677,
+      "ndcg": 0.9211,
+      "instance_coverage": {
+        "B": {
+          "detected_instances": 2,
+          "total_instances": 14,
+          "coverage_pct": 14.29
+        },
+        "C": {
+          "detected_instances": 0,
+          "total_instances": 12,
+          "coverage_pct": 0.0
+        },
+        "D": {
+          "detected_instances": 0,
+          "total_instances": 15,
+          "coverage_pct": 0.0
+        },
+        "E": {
+          "detected_instances": 7,
+          "total_instances": 8,
+          "coverage_pct": 87.5
+        },
+        "F": {
+          "detected_instances": 2,
+          "total_instances": 20,
+          "coverage_pct": 10.0
+        },
+        "G": {
+          "detected_instances": 6,
+          "total_instances": 10,
+          "coverage_pct": 60.0
+        },
+        "H": {
+          "detected_instances": 5,
+          "total_instances": 6,
+          "coverage_pct": 83.33
+        }
+      }
+    }
+  ],
+  "pattern_metrics": {
+    "total_patterns": 24,
+    "by_kind": {
+      "mixing": 24
+    },
+    "peeling": {
+      "candidate_count": 0,
+      "scenario_D_related_count": 0,
+      "scenario_D_related_rate_pct": 0.0,
+      "detected_instances": [],
+      "total_instances": 15,
+      "instance_coverage_pct": 0.0
+    },
+    "mixing": {
+      "candidate_count": 24,
+      "scenario_E_related_count": 7,
+      "scenario_E_related_rate_pct": 29.17,
+      "detected_instances": [
+        "E-01",
+        "E-02",
+        "E-03",
+        "E-04",
+        "E-05",
+        "E-07",
+        "E-08"
+      ],
+      "total_instances": 8,
+      "instance_coverage_pct": 87.5
+    },
+    "notes": [
+      "Pattern evaluation is post-hoc only; ground truth never affects detection.",
+      "A candidate is considered scenario-related when at least one wallet in its steps maps to the corresponding labeled scenario family.",
+      "This is a conservative attribution aid, not proof that the pattern itself is a true positive."
+    ]
+  }
+}

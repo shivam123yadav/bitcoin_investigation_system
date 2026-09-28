@@ -1,0 +1,88 @@
+# Python
+.venv/
+# Extra virtual environments (WSL/Linux/CI variants, e.g. .venv-linux313)
+.venv*/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+# Key material, certificates and credential files
+*.pem
+*.key
+*.p12
+*.pfx
+*.secret
+id_rsa*
+id_ed25519*
+credentials.json
+service-account*.json
+serviceAccount*.json
+
+# Node / frontend
+node_modules/
+frontend/dist/
+*.log
+
+# Runtime temporary data
+backend/data/flexible_uploads/
+backend/data/**/*.tmp
+backend/data/**/*.lock
+backend/data/**/*.duckdb.wal
+backend/data/**/*.duckdb-wal
+*.duckdb.tmp
+
+# OS / editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Temporary files
+*.tmp
+*.bak
+*.save
+*.orig
+*.rej
+*.swp
+
+# Large validation-only Elliptic++ dataset
+datasets/real/elliptic_transactions/
+
+# Derived Elliptic++ validation artifacts
+backend/data/elliptic/
+
+# Generated runtime analysis artifacts
+backend/data/normalized/
+backend/data/graph/
+backend/data/runs/
+
+# Persistent local application state
+backend/data/cases.json
+
+# Offline GeoIP database files
+datasets/geoip/*.mmdb
+datasets/geoip/*.mmdb.gz
+# Global guard: MMDB datasets are never committed (see README "MMDB Placement")
+*.mmdb
+*.mmdb.gz
+
+# Optional: the NDJSON export (~26 MB) duplicates synthetic_traffic_v1.0.0.csv,
+# which is the file the backend actually ingests. Uncomment to drop it from Git.
+# datasets/generated/*.ndjson
