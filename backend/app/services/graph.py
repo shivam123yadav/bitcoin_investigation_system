@@ -264,35 +264,98 @@ class GraphService:
             return graph
 
     def statistics(self) -> dict[str, Any]:
-        graph = self.get_graph()
-        type_counts = Counter(
-            attributes.get("type", "unknown")
-            for _, attributes in graph.nodes(data=True)
-        )
-        degrees = [degree for _, degree in graph.degree()]
-        in_degrees = [degree for _, degree in graph.in_degree()]
-        out_degrees = [degree for _, degree in graph.out_degree()]
-        components = list(nx.weakly_connected_components(graph)) if graph else []
-        largest_component = max((len(component) for component in components), default=0)
-        return {
-            "total_nodes": graph.number_of_nodes(),
-            "total_edges": graph.number_of_edges(),
-            "wallet_nodes": type_counts.get("wallet", 0),
-            "transaction_nodes": type_counts.get("transaction", 0),
-            "ip_nodes": type_counts.get("ip", 0),
-            "connected_components": len(components),
-            "largest_component_nodes": largest_component,
-            "average_degree": round(sum(degrees) / len(degrees), 4) if degrees else 0.0,
-            "average_in_degree": (
-                round(sum(in_degrees) / len(in_degrees), 4) if in_degrees else 0.0
-            ),
-            "average_out_degree": (
-                round(sum(out_degrees) / len(out_degrees), 4) if out_degrees else 0.0
-            ),
-            "max_degree": max(degrees, default=0),
-            "max_in_degree": max(in_degrees, default=0),
-            "max_out_degree": max(out_degrees, default=0),
-        }
+        """Return graph statistics without building the NetworkX graph.
+
+        Memory-safe for small deployments (e.g. Railway 1 GB): all
+        aggregates are computed inside DuckDB with bounded scalar/group-by
+        queries. No ``get_graph()``, no pandas full-table load, no NetworkX.
+
+        Fields ``connected_components`` and ``largest_component_nodes`` cannot
+        be computed without a full in-memory graph traversal, so they are
+        reported as 0 (unavailable) rather than invented.
+        """
+        dataset_version = self._dataset_version()
+        storage = GraphStorage(self.storage_root, dataset_version)
+        if not storage.exists():
+            raise GraphDataError("Graph cache is missing")
+        connection = duckdb.connect(str(storage.paths.duckdb_path), read_only=True)
+        try:
+            metadata_row = connection.execute(
+                "SELECT dataset_version FROM metadata"
+            ).fetchone()
+            if metadata_row is None or metadata_row[0] != dataset_version:
+                raise GraphDataError(
+                    "Graph cache belongs to a different dataset version"
+                )
+            total_nodes = int(
+                connection.execute("SELECT COUNT(*) FROM nodes").fetchone()[0]
+            )
+            total_edges = int(
+                connection.execute("SELECT COUNT(*) FROM edges").fetchone()[0]
+            )
+            type_rows = connection.execute(
+                "SELECT type, COUNT(*) FROM nodes GROUP BY type"
+            ).fetchall()
+            type_counts = {str(name): int(count) for name, count in type_rows}
+            if total_nodes:
+                average_degree = round((2 * total_edges) / total_nodes, 4)
+                average_in_degree = round(total_edges / total_nodes, 4)
+                average_out_degree = round(total_edges / total_nodes, 4)
+                max_in_degree = int(
+                    connection.execute(
+                        "SELECT MAX(cnt) FROM "
+                        "(SELECT target, COUNT(*) AS cnt FROM edges GROUP BY target)"
+                    ).fetchone()[0]
+                    or 0
+                )
+                max_out_degree = int(
+                    connection.execute(
+                        "SELECT MAX(cnt) FROM "
+                        "(SELECT source, COUNT(*) AS cnt FROM edges GROUP BY source)"
+                    ).fetchone()[0]
+                    or 0
+                )
+                max_degree = int(
+                    connection.execute(
+                        "WITH indeg AS (SELECT target AS node_id, COUNT(*) AS c "
+                        "FROM edges GROUP BY target), "
+                        "outdeg AS (SELECT source AS node_id, COUNT(*) AS c "
+                        "FROM edges GROUP BY source) "
+                        "SELECT MAX(COALESCE(i.c, 0) + COALESCE(o.c, 0)) "
+                        "FROM (SELECT node_id FROM indeg UNION SELECT node_id FROM outdeg) u "
+                        "LEFT JOIN indeg i USING (node_id) "
+                        "LEFT JOIN outdeg o USING (node_id)"
+                    ).fetchone()[0]
+                    or 0
+                )
+            else:
+                average_degree = 0.0
+                average_in_degree = 0.0
+                average_out_degree = 0.0
+                max_degree = 0
+                max_in_degree = 0
+                max_out_degree = 0
+            return {
+                "total_nodes": total_nodes,
+                "total_edges": total_edges,
+                "wallet_nodes": type_counts.get("wallet", 0),
+                "transaction_nodes": type_counts.get("transaction", 0),
+                "ip_nodes": type_counts.get("ip", 0),
+                "connected_components": 0,
+                "largest_component_nodes": 0,
+                "average_degree": average_degree,
+                "average_in_degree": average_in_degree,
+                "average_out_degree": average_out_degree,
+                "max_degree": max_degree,
+                "max_in_degree": max_in_degree,
+                "max_out_degree": max_out_degree,
+            }
+        except GraphDataError:
+            raise
+        except Exception as exc:
+            raise GraphDataError("Failed to compute graph statistics") from exc
+        finally:
+            connection.close()
 
     def entity_summary(
         self,
