@@ -69,7 +69,6 @@ datasets/real/elliptic_transactions/
 backend/data/elliptic/
 
 # Generated runtime analysis artifacts
-backend/data/normalized/
 backend/data/graph/
 backend/data/runs/
 
