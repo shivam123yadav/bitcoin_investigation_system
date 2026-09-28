@@ -13,9 +13,16 @@ def result():
     except AnalysisError as e: raise HTTPException(500,str(e)) from e
 
 # State-changing: runs the full analysis pipeline, so it requires the API token.
+# When a valid precomputed state was restored at startup (e.g. Railway image
+# ships backend/data/runs/latest.json + parquet artifacts), reuse it instead
+# of forcing a memory-heavy full recompute. Local dev without cached state
+# still runs the full pipeline.
 @router.post('/run', dependencies=[Depends(require_api_token)])
 def run():
     try:
+        current = analysis_service.status()
+        if current.get('status') == 'completed' and current.get('stages'):
+            return current['stages']
         s=analysis_service.run(force=True)
         return s.stages
     except AnalysisError as e: raise HTTPException(500,str(e)) from e
