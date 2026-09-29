@@ -12,6 +12,7 @@ import Clusters from './pages/Clusters';
 import Patterns from './pages/Patterns';
 import Cases from './pages/Cases';
 import Settings from './pages/Settings';
+import Team from './pages/Team';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
       <Routes>
         {/* Public landing page */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/team" element={<Team />} />
 
         {/* BTC Sentinel Investigation Platform */}
         <Route

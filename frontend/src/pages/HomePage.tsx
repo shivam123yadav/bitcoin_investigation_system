@@ -2,56 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Shield, Activity, Network, ArrowLeftRight, Share2, ScanSearch, Target,
-  Database, Cpu, Globe, Lock, Eye, Zap, Users, ChevronDown, Menu, X, GitBranch,
+  Database, Cpu, Globe, Lock, Eye, Zap, Users, Menu, X, GitBranch,
   Sun, Moon
 } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
-
-// Team member data - easy to edit
-const teamMembers = [
-  {
-    id: 1,
-    name: "MEMBER 01",
-    role: "Lead Developer",
-    responsibility: "Backend & System Architecture",
-    initials: "M1"
-  },
-  {
-    id: 2,
-    name: "MEMBER 02",
-    role: "AI / ML Engineer",
-    responsibility: "Anomaly Detection & Analytics",
-    initials: "M2"
-  },
-  {
-    id: 3,
-    name: "MEMBER 03",
-    role: "Frontend Engineer",
-    responsibility: "UI / Visualization",
-    initials: "M3"
-  },
-  {
-    id: 4,
-    name: "MEMBER 04",
-    role: "Blockchain Analyst",
-    responsibility: "Transaction & Graph Intelligence",
-    initials: "M4"
-  },
-  {
-    id: 5,
-    name: "MEMBER 05",
-    role: "Security Engineer",
-    responsibility: "Cybersecurity & Data Protection",
-    initials: "M5"
-  },
-  {
-    id: 6,
-    name: "MEMBER 06",
-    role: "Research & Integration",
-    responsibility: "Research, Testing & Documentation",
-    initials: "M6"
-  }
-];
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -82,9 +36,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] overflow-x-hidden transition-colors duration-300">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[var(--bg-primary)]/80 backdrop-blur-xl border-b border-[var(--border-subtle)]' : 'bg-transparent'
-      }`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[var(--bg-primary)]/80 backdrop-blur-xl border-b border-[var(--border-subtle)]' : 'bg-transparent'
+        }`}>
         <div className="w-full px-6 md:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-500/30 flex items-center justify-center">
@@ -101,7 +54,8 @@ export default function HomePage() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollToSection('overview')} className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+            <button
+              onClick={() => scrollToSection('overview')} className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
               Overview
             </button>
             <button onClick={() => scrollToSection('capabilities')} className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
@@ -110,36 +64,37 @@ export default function HomePage() {
             <button onClick={() => scrollToSection('technology')} className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
               Technology
             </button>
-            <button onClick={() => scrollToSection('team')} className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+            <button
+              onClick={() => navigate('/team')}
+              className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+            >
               Team
             </button>
-            
+
             {/* Theme Toggle */}
             <div className="flex items-center gap-1 p-1 rounded-md bg-[var(--bg-tertiary)] border border-[var(--border-subtle)]">
               <button
                 onClick={() => setTheme('day')}
-                className={`p-1.5 rounded transition-all ${
-                  theme === 'day' 
-                    ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]' 
-                    : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
-                }`}
+                className={`p-1.5 rounded transition-all ${theme === 'day'
+                  ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                  }`}
                 aria-label="Switch to day theme"
               >
                 <Sun size={14} />
               </button>
               <button
                 onClick={() => setTheme('night')}
-                className={`p-1.5 rounded transition-all ${
-                  theme === 'night' 
-                    ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]' 
-                    : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
-                }`}
+                className={`p-1.5 rounded transition-all ${theme === 'night'
+                  ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]'
+                  : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                  }`}
                 aria-label="Switch to night theme"
               >
                 <Moon size={14} />
               </button>
             </div>
-            
+
             <button
               onClick={() => navigate('/overview')}
               className="group px-5 py-2 rounded-md bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/30 text-[var(--accent-cyan)] text-sm font-medium hover:bg-[var(--accent-cyan)]/20 transition-all flex items-center gap-2"
@@ -171,39 +126,37 @@ export default function HomePage() {
               <button onClick={() => scrollToSection('technology')} className="block w-full text-left text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
                 Technology
               </button>
-              <button onClick={() => scrollToSection('team')} className="block w-full text-left text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+              <button onClick={() => navigate('/team')} className="block w-full text-left text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
                 Team
               </button>
-              
+
               {/* Mobile Theme Toggle */}
               <div className="flex items-center gap-2 pt-2 border-t border-[var(--border-subtle)]">
                 <span className="text-xs text-[var(--text-muted)]">Theme:</span>
                 <div className="flex items-center gap-1 p-1 rounded-md bg-[var(--bg-tertiary)] border border-[var(--border-subtle)]">
                   <button
                     onClick={() => setTheme('day')}
-                    className={`p-1.5 rounded transition-all ${
-                      theme === 'day' 
-                        ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]' 
-                        : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
-                    }`}
+                    className={`p-1.5 rounded transition-all ${theme === 'day'
+                      ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]'
+                      : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                      }`}
                     aria-label="Switch to day theme"
                   >
                     <Sun size={14} />
                   </button>
                   <button
                     onClick={() => setTheme('night')}
-                    className={`p-1.5 rounded transition-all ${
-                      theme === 'night' 
-                        ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]' 
-                        : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
-                    }`}
+                    className={`p-1.5 rounded transition-all ${theme === 'night'
+                      ? 'bg-[var(--accent-cyan)]/20 text-[var(--accent-cyan)]'
+                      : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)]'
+                      }`}
                     aria-label="Switch to night theme"
                   >
                     <Moon size={14} />
                   </button>
                 </div>
               </div>
-              
+
               <button
                 onClick={() => navigate('/overview')}
                 className="block w-full px-4 py-2 rounded-md bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/30 text-[var(--accent-cyan)] text-sm font-medium hover:bg-[var(--accent-cyan)]/20 transition-all text-center"
@@ -221,18 +174,18 @@ export default function HomePage() {
         <div className="absolute inset-0">
           {/* Grid */}
           <div className="absolute inset-0 bg-grid opacity-20" />
-          
+
           {/* Radial atmosphere */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px]"
-            style={{ 
+            style={{
               background: 'radial-gradient(circle, var(--home-atmosphere-primary) 0%, var(--home-atmosphere-secondary) 40%, transparent 70%)',
               opacity: 'var(--graph-glow-opacity)'
             }} />
-          
+
           {/* Coordinate marks */}
           <div className="absolute top-20 left-20 text-[10px] font-mono text-[var(--accent-cyan)]/20">X:0000</div>
           <div className="absolute top-20 right-20 text-[10px] font-mono text-[var(--accent-cyan)]/20">X:9999</div>
-          
+
           {/* Tiny data points */}
           <div className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full bg-[var(--accent-cyan)]/30 animate-pulse-slow" />
           <div className="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-[var(--accent-blue)]/30 animate-pulse-slow" style={{ animationDelay: '1s' }} />
@@ -270,11 +223,11 @@ export default function HomePage() {
                 <Shield size={16} className="group-hover:scale-110 transition-transform" />
               </button>
               <button
-                onClick={() => scrollToSection('capabilities')}
+                onClick={() => navigate('/team')}
                 className="px-6 py-3 rounded-md bg-[var(--bg-tertiary)] border border-[var(--border-subtle)] text-[var(--text-primary)] font-medium hover:bg-[var(--bg-hover)] transition-all flex items-center justify-center gap-2"
               >
-                Explore Capabilities
-                <ChevronDown size={16} />
+                Our Team
+                <Users size={16} />
               </button>
             </div>
 
@@ -310,10 +263,10 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-primary)] via-[var(--bg-secondary)] to-[var(--bg-primary)]" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px]"
             style={{ background: 'radial-gradient(circle, var(--home-atmosphere-primary) 0%, var(--home-atmosphere-secondary) 30%, transparent 70%)' }} />
-          
+
           {/* Subtle grid overlay */}
           <div className="absolute inset-0 bg-grid opacity-[0.03]" />
-          
+
           {/* Horizontal accent lines */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/20 to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/20 to-transparent" />
@@ -334,7 +287,7 @@ export default function HomePage() {
               <span className="block text-[var(--text-primary)]/90">THE BLOCKCHAIN</span>
               <span className="block text-[var(--text-primary)]/90">IS PUBLIC.</span>
             </h2>
-            
+
             <div className="flex items-center justify-center gap-4 py-4">
               <div className="h-px w-16 bg-gradient-to-r from-transparent to-[var(--accent-cyan)]/50" />
               <div className="w-2 h-2 rounded-full bg-[var(--accent-cyan)]" />
@@ -417,7 +370,7 @@ export default function HomePage() {
                 <div className="absolute -top-8 -right-4 text-[180px] font-bold text-[var(--accent-cyan)]/[0.03] leading-none select-none pointer-events-none group-hover:text-[var(--accent-cyan)]/[0.06] transition-colors">
                   {item.num}
                 </div>
-                
+
                 <div className="relative">
                   <div className="text-xs font-mono text-[var(--accent-cyan)]/60 mb-4 tracking-wider">
                     {item.num}
@@ -471,7 +424,7 @@ export default function HomePage() {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
               {/* Outer glow ring */}
               <div className="absolute inset-0 -m-8 rounded-full bg-gradient-to-br from-[var(--accent-cyan)]/20 to-[var(--accent-blue)]/20 blur-xl animate-pulse-slow" />
-              
+
               {/* Rotating border */}
               <div className="absolute inset-0 -m-4">
                 <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-dashed border-[var(--accent-cyan)]/30 animate-spin-slow" />
@@ -501,7 +454,7 @@ export default function HomePage() {
               const radius = typeof window !== 'undefined' ? Math.min(240, window.innerWidth * 0.18) : 240;
               const x = Math.cos((node.angle * Math.PI) / 180) * radius;
               const y = Math.sin((node.angle * Math.PI) / 180) * radius;
-              
+
               const colorClasses = {
                 cyan: 'from-cyan-500/10 to-cyan-500/5 border-cyan-500/30 text-cyan-400',
                 blue: 'from-blue-500/10 to-blue-500/5 border-blue-500/30 text-blue-400',
@@ -512,7 +465,7 @@ export default function HomePage() {
               };
 
               const Icon = node.icon;
-              
+
               return (
                 <div
                   key={i}
@@ -545,7 +498,7 @@ export default function HomePage() {
                 const radius = typeof window !== 'undefined' ? Math.min(240, window.innerWidth * 0.18) : 240;
                 const x = Math.cos((angle * Math.PI) / 180) * radius;
                 const y = Math.sin((angle * Math.PI) / 180) * radius;
-                
+
                 return (
                   <g key={i}>
                     <line
@@ -631,7 +584,7 @@ export default function HomePage() {
               >
                 {/* Subtle data line animation on hover */}
                 <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent-cyan)]/0 to-transparent group-hover:via-[var(--accent-cyan)]/50 transition-all duration-500" />
-                
+
                 <div className="flex items-start justify-between mb-4">
                   <div className="p-3 rounded-lg bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/20 group-hover:bg-[var(--accent-cyan)]/20 group-hover:scale-110 transition-all duration-300">
                     <item.icon size={20} className="text-[var(--accent-cyan)]" />
@@ -869,7 +822,7 @@ export default function HomePage() {
             <div className="max-w-2xl mx-auto text-center p-12 rounded-lg bg-[var(--bg-card)] border border-[var(--accent-cyan)]/20 backdrop-blur-sm relative overflow-hidden">
               {/* Background grid */}
               <div className="absolute inset-0 bg-grid opacity-[0.05]" />
-              
+
               {/* Glow effect */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full"
                 style={{ background: 'radial-gradient(circle, var(--home-atmosphere-primary) 0%, transparent 70%)' }} />
@@ -927,7 +880,7 @@ export default function HomePage() {
                 green: 'border-green-500/20 text-green-400',
                 red: 'border-red-500/20 text-red-400'
               };
-              
+
               return (
                 <div
                   key={i}
@@ -970,130 +923,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Team Section — Professional Technical Intelligence Team */}
-      <section id="team" className="relative py-32 px-6 bg-gradient-to-b from-transparent via-[var(--accent-cyan)]/[0.02] to-transparent overflow-hidden">
-        {/* Background pattern */}
-        <div className="absolute inset-0 bg-grid opacity-5" />
-
-        <div className="max-w-7xl mx-auto relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-cyan)]/5 border border-[var(--accent-cyan)]/20 mb-6">
-              <div className="w-2 h-2 rounded-full bg-[var(--accent-cyan)] animate-pulse" />
-              <span className="text-xs font-mono text-[var(--accent-cyan)] uppercase tracking-[0.2em]">
-                Technical Division
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-[var(--text-primary)]">
-              THE TEAM
-              <br />
-              <span className="text-[var(--text-muted)]">BEHIND THE INTELLIGENCE.</span>
-            </h2>
-            <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-              A multidisciplinary team of engineers, researchers, and analysts building the future of blockchain investigation
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {teamMembers.map((member, index) => {
-              // Color variations for each member
-              const colors = [
-                { accent: 'cyan', gradient: 'from-cyan-500/20 via-blue-500/10 to-transparent', border: 'hover:border-cyan-500/40', text: 'text-cyan-400', bg: 'bg-cyan-500' },
-                { accent: 'blue', gradient: 'from-blue-500/20 via-violet-500/10 to-transparent', border: 'hover:border-blue-500/40', text: 'text-blue-400', bg: 'bg-blue-500' },
-                { accent: 'violet', gradient: 'from-violet-500/20 via-purple-500/10 to-transparent', border: 'hover:border-violet-500/40', text: 'text-violet-400', bg: 'bg-violet-500' },
-                { accent: 'amber', gradient: 'from-amber-500/20 via-orange-500/10 to-transparent', border: 'hover:border-amber-500/40', text: 'text-amber-400', bg: 'bg-amber-500' },
-                { accent: 'green', gradient: 'from-green-500/20 via-emerald-500/10 to-transparent', border: 'hover:border-green-500/40', text: 'text-green-400', bg: 'bg-green-500' },
-                { accent: 'red', gradient: 'from-red-500/20 via-pink-500/10 to-transparent', border: 'hover:border-red-500/40', text: 'text-red-400', bg: 'bg-red-500' }
-              ];
-
-              const color = colors[index];
-
-              return (
-                <div
-                  key={member.id}
-                  className={`group relative p-6 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] ${color.border} backdrop-blur-sm transition-all duration-300 hover:scale-[1.02] overflow-hidden`}
-                >
-                  {/* Large background number */}
-                  <div className="absolute -top-4 -right-4 text-[120px] font-bold text-[var(--text-primary)]/[0.02] leading-none select-none pointer-events-none group-hover:text-[var(--text-primary)]/[0.04] transition-colors">
-                    {String(member.id).padStart(2, '0')}
-                  </div>
-
-                  {/* Gradient overlay on hover */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${color.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
-                  {/* Top accent line */}
-                  <div className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent ${color.text.replace('text-', 'via-')} to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300`} />
-
-                  <div className="relative">
-                    {/* Header */}
-                    <div className="flex items-start gap-4 mb-4">
-                      {/* Technical ID badge */}
-                      <div className="flex-shrink-0">
-                        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${color.gradient} border border-[var(--border-subtle)] flex items-center justify-center`}>
-                          <span className={`text-lg font-bold ${color.text}`}>{member.initials}</span>
-                        </div>
-                      </div>
-
-                      {/* Info */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
-                            ID: {String(member.id).padStart(2, '0')}
-                          </span>
-                          <div className="flex-1 h-px bg-gradient-to-r from-[var(--border-subtle)] to-transparent" />
-                        </div>
-                        <h3 className="text-base font-bold text-[var(--text-primary)] mb-1 truncate">
-                          {member.name}
-                        </h3>
-                        <p className={`text-xs font-medium ${color.text} mb-1`}>
-                          {member.role}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Responsibility */}
-                    <div className="mb-4">
-                      <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
-                        {member.responsibility}
-                      </p>
-                    </div>
-
-                    {/* Footer */}
-                    <div className="pt-4 border-t border-[var(--border-subtle)]">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className={`w-1.5 h-1.5 rounded-full ${color.bg} animate-pulse`} />
-                          <span className="text-[10px] font-mono text-[var(--text-muted)] uppercase tracking-wider">
-                            Active
-                          </span>
-                        </div>
-                        <div className={`text-[10px] font-mono ${color.text} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}>
-                          → Details
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Team stats */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { label: 'Team Members', value: '6' },
-              { label: 'Technologies', value: '12+' },
-              { label: 'Months', value: '6' },
-              { label: 'Lines of Code', value: '15K+' }
-            ].map((stat, i) => (
-              <div key={i} className="text-center p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
-                <div className="text-2xl font-bold text-[var(--accent-cyan)] mb-1 tabular-nums">{stat.value}</div>
-                <div className="text-xs text-[var(--text-muted)] uppercase tracking-wider">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Final CTA - Cinematic */}
       <section className="relative py-32 px-6 overflow-hidden">
         {/* Subtle network visualization background */}
@@ -1101,7 +930,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-grid opacity-10" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px]"
             style={{ background: 'radial-gradient(circle, var(--home-atmosphere-primary) 0%, transparent 60%)' }} />
-          
+
           {/* Animated particles */}
           <div className="absolute top-1/4 left-1/4 w-1 h-1 rounded-full bg-[var(--accent-cyan)]/40 animate-pulse-slow" />
           <div className="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-[var(--accent-blue)]/40 animate-pulse-slow" style={{ animationDelay: '1s' }} />
@@ -1188,7 +1017,7 @@ export default function HomePage() {
                 <button onClick={() => scrollToSection('technology')} className="block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-mono">
                   → Technology
                 </button>
-                <button onClick={() => scrollToSection('team')} className="block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-mono">
+                <button onClick={() => navigate('/team')} className="block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors font-mono">
                   → Team
                 </button>
                 <div className="text-xs text-[var(--text-secondary)] font-mono">
@@ -1220,7 +1049,7 @@ function InvestigationGraph() {
   const nodes = [
     // Central core - Bitcoin Intelligence Core
     { id: 'core', x: 250, y: 250, size: 'large', type: 'core', label: 'BTC SENTINEL', sublabel: 'INTELLIGENCE CORE', meta: 'v1.0.0' },
-    
+
     // Primary investigation path - Bitcoin forensic chain
     { id: 'wallet1', x: 150, y: 120, size: 'medium', type: 'wallet', label: 'WALLET', meta: 'bc1q7x2...f4a9' },
     { id: 'tx1', x: 320, y: 180, size: 'medium', type: 'tx', label: 'TX', meta: 'TX 9A72...F3B1' },
@@ -1228,7 +1057,7 @@ function InvestigationGraph() {
     { id: 'wallet2', x: 200, y: 380, size: 'medium', type: 'wallet', label: 'WALLET', meta: 'bc1q9z4...h6c1' },
     { id: 'pattern1', x: 100, y: 280, size: 'medium', type: 'pattern', label: 'PATTERN', meta: 'REPEATED FAN-OUT' },
     { id: 'ip1', x: 420, y: 150, size: 'medium', type: 'ip', label: 'IP', meta: '185.220.101.4' },
-    
+
     // Secondary nodes - Supporting intelligence
     { id: 'cluster1', x: 300, y: 80, size: 'small', type: 'cluster', label: 'CLUSTER', meta: 'C-007' },
     { id: 'wallet3', x: 80, y: 380, size: 'small', type: 'wallet', label: 'WALLET', meta: 'bc1q3m5...d2e7' },
@@ -1245,7 +1074,7 @@ function InvestigationGraph() {
     { from: 'entity1', to: 'wallet2', highlighted: true, label: 'CONTROLLED' },
     { from: 'wallet2', to: 'pattern1', highlighted: true, label: 'DETECTED' },
     { from: 'pattern1', to: 'ip1', highlighted: true, label: 'ORIGIN' },
-    
+
     // Secondary connections (supporting intelligence)
     { from: 'core', to: 'cluster1', highlighted: false },
     { from: 'core', to: 'lead1', highlighted: false },
@@ -1284,7 +1113,7 @@ function InvestigationGraph() {
     <div className="relative w-[520px] h-[520px] max-w-full max-h-full overflow-visible">
       {/* Background */}
       <div className="absolute inset-0 bg-grid opacity-10" />
-      
+
       {/* Radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px]"
         style={{ background: 'radial-gradient(circle, var(--home-atmosphere-primary) 0%, transparent 60%)' }} />
@@ -1364,7 +1193,7 @@ function InvestigationGraph() {
       {nodes.map((node) => {
         const sizeClass = getNodeSize(node.size);
         const colorClass = getNodeColor(node.type);
-        
+
         return (
           <div
             key={node.id}
@@ -1387,19 +1216,19 @@ function InvestigationGraph() {
                 <span className="text-[8px] font-bold" style={{ color: 'var(--graph-node-text)' }}>{node.label}</span>
               )}
             </div>
-            
+
             {/* Metadata labels */}
             {node.meta && (
               <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <div className="px-2 py-0.5 rounded backdrop-blur-sm" style={{ 
-                  backgroundColor: 'var(--graph-label-bg)', 
-                  border: '1px solid var(--graph-label-border)' 
+                <div className="px-2 py-0.5 rounded backdrop-blur-sm" style={{
+                  backgroundColor: 'var(--graph-label-bg)',
+                  border: '1px solid var(--graph-label-border)'
                 }}>
                   <span className="text-[8px] font-mono" style={{ color: 'var(--graph-label-meta)' }}>{node.meta}</span>
                 </div>
               </div>
             )}
-            
+
             {/* Core label */}
             {node.type === 'core' && (
               <div className="absolute top-full mt-3 left-1/2 -translate-x-1/2 text-center">
@@ -1412,9 +1241,9 @@ function InvestigationGraph() {
       })}
 
       {/* Active Intelligence Network label */}
-      <div className="absolute top-4 left-4 px-3 py-1.5 rounded-md backdrop-blur-sm" style={{ 
-        backgroundColor: 'var(--graph-label-bg)', 
-        border: '1px solid var(--graph-label-border)' 
+      <div className="absolute top-4 left-4 px-3 py-1.5 rounded-md backdrop-blur-sm" style={{
+        backgroundColor: 'var(--graph-label-bg)',
+        border: '1px solid var(--graph-label-border)'
       }}>
         <div className="flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent-cyan)' }} />
@@ -1424,7 +1253,7 @@ function InvestigationGraph() {
 
       {/* Scan line */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute left-0 right-0 h-px animate-scan" style={{ 
+        <div className="absolute left-0 right-0 h-px animate-scan" style={{
           background: 'linear-gradient(to right, transparent, var(--accent-cyan), transparent)',
           opacity: 'var(--graph-glow-opacity)'
         }} />
