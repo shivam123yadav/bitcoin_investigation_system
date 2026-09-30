@@ -1,5 +1,11 @@
 import { Linkedin, Github, Shield } from 'lucide-react';
 import { GlassPanel } from '../components/ui';
+import shivamImage from '../images/shivam.png';
+import sabaImage from '../images/saba.png';
+import yashImage from '../images/yash.jpeg';
+import suryanshImage from '../images/suryansh.png';
+import kanhaiyaImage from '../images/kanhaiya.png';
+import sachinImage from '../images/sachin.png';
 
 // ============================================================
 // TEAM MEMBER DATA - Easy to edit
@@ -8,56 +14,52 @@ import { GlassPanel } from '../components/ui';
 const teamMembers = [
   {
     id: "M01",
-    name: "Member One",
-    role: "Lead Developer",
-    description: "Backend & System Architecture",
-    image: "https://image.qwenlm.ai/generated-images/98bbc031-199c-43ef-a05e-f17041c57c59/_result.png",
-    linkedin: "https://www.linkedin.com/",
-    github: "https://github.com/"
+    name: "Shivam Yadav",
+    role: "Full Stack Developer",
+    image: shivamImage,
+    objectPosition: "center 35%",
+    linkedin: "https://www.linkedin.com/feed/",
+    github: "https://github.com/shivam123yadav"
   },
   {
     id: "M02",
-    name: "Member Two",
-    role: "AI / ML Engineer",
-    description: "Anomaly Detection & Analytics",
-    image: "https://image.qwenlm.ai/generated-images/08f3e70e-6dde-4a3c-8c6b-9744af2965d9/_result.png",
-    linkedin: "https://www.linkedin.com/",
+    name: "Saba Arif",
+    role: "UI/UX Developer",
+    image: sabaImage,
+    objectPosition: "center 35%",
+    linkedin: "https://www.linkedin.com/in/saba-arif-9ba9b8362/",
     github: "https://github.com/"
   },
   {
     id: "M03",
-    name: "Member Three",
-    role: "Frontend Engineer",
-    description: "UI / Investigation Visualization",
-    image: "https://image.qwenlm.ai/generated-images/b7473d32-9716-4c9f-82f4-5fd6c953aa0e/_result.png",
-    linkedin: "https://www.linkedin.com/",
-    github: "https://github.com/"
+    name: "Yash Kumar",
+    role: "Full Stack Developer",
+    image: yashImage,
+    linkedin: "https://www.linkedin.com/in/yash-jaiswal-a9489a220/",
+    github: "https://github.com/Asmodeus6260"
   },
   {
     id: "M04",
-    name: "Member Four",
-    role: "Blockchain Analyst",
-    description: "Transaction & Graph Intelligence",
-    image: "https://image.qwenlm.ai/generated-images/bfa44817-dba1-4b8e-aa0f-1cda2a0b021b/_result.png",
-    linkedin: "https://www.linkedin.com/",
-    github: "https://github.com/"
+    name: "Suryansh Ghosh",
+    role: "Full Stack Developer",
+    image: suryanshImage,
+    linkedin: "www.linkedin.com/in/suryansh-singh-ghosh-324829329",
+    github: "https://github.com/Suryansh-sys"
   },
   {
     id: "M05",
-    name: "Member Five",
-    role: "Security Engineer",
-    description: "Cybersecurity & Data Protection",
-    image: "https://image.qwenlm.ai/generated-images/90ba5252-e4f1-4add-b989-d1457ec109e9/_result.png",
-    linkedin: "https://www.linkedin.com/",
-    github: "https://github.com/"
+    name: "Kanhaiya Partidar",
+    role: "Full Stack Developer",
+    image: kanhaiyaImage,
+    linkedin: "https://www.linkedin.com/in/kanhaiya-patidar-814721329?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+    github: "https://share.google/RKLmjGCtxLdy3Kg0z"
   },
   {
     id: "M06",
-    name: "Member Six",
-    role: "Research & Integration",
-    description: "Research, Testing & Documentation",
-    image: "https://image.qwenlm.ai/generated-images/c718d5f4-3570-43ec-8929-308f908c02f9/_result.png",
-    linkedin: "https://www.linkedin.com/",
+    name: "Sachin Kumar",
+    role: "Frontend Developer",
+    image: sachinImage,
+    linkedin: "https://www.linkedin.com/in/sachin-kumar-59627a339/",
     github: "https://github.com/"
   }
 ];
@@ -67,7 +69,7 @@ export default function Team() {
     <div className="min-h-screen bg-[var(--bg-primary)] relative overflow-hidden">
       {/* Subtle background grid pattern */}
       <div className="absolute inset-0 bg-grid opacity-[0.03] pointer-events-none" />
-      
+
       {/* Radial atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px]"
         style={{ background: 'radial-gradient(ellipse, var(--home-atmosphere-primary) 0%, transparent 70%)' }} />
@@ -94,7 +96,7 @@ export default function Team() {
 
           {/* Subtitle */}
           <p className="text-lg text-[var(--text-secondary)] max-w-3xl mx-auto leading-relaxed">
-            A multidisciplinary team building intelligent tools for Bitcoin network investigation, 
+            A multidisciplinary team building intelligent tools for Bitcoin network investigation,
             anomaly detection, and blockchain forensics.
           </p>
 
@@ -150,10 +152,11 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
       <div className="flex flex-col items-center mb-4">
         <div className="relative mb-4">
           <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-[var(--border-default)] group-hover:border-[var(--accent-cyan)]/50 transition-all duration-300">
-            <img 
-              src={member.image} 
+            <img
+              src={member.image}
               alt={member.name}
               className="w-full h-full object-cover"
+              style={{ objectPosition: member.objectPosition || "center" }}
             />
           </div>
           {/* Status indicator */}
@@ -167,9 +170,7 @@ function TeamMemberCard({ member }: { member: typeof teamMembers[0] }) {
         <p className="text-sm font-medium text-[var(--accent-cyan)] mb-2 text-center">
           {member.role}
         </p>
-        <p className="text-xs text-[var(--text-secondary)] text-center leading-relaxed">
-          {member.description}
-        </p>
+
       </div>
 
       {/* Social Links */}
